@@ -1,34 +1,81 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
     <title>API Project</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Nunito"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          media="screen"
+          href="style.css" />
 
 </head>
 
 <body>
-    <div class="container">	
-        <div class="user-container"></div>	
-        <div class="quote-container"></div>	
-        <div class="content-container">	
-            <div class="pokemon-container"></div>	
-            <div class="meat-container"></div>	
-        </div>	
-        <div class="friends">	
-            <h4>Friends</h4>	
-            <div class="friends-container">	
-            </div>	
-        </div>	
-        <div class="buttons">	
-            <button>Load User Data</button>	
-            <button>Display User</button>	
-        </div>	
+    <div class="container">
+        <div class="user-container"></div>
+        <div class="quote-container"></div>
+        <div class="content-container">
+            <div class="pokemon-container"></div>
+            <div class="meat-container"></div>
+        </div>
+        <div class="friends">
+            <h4>Friends</h4>
+            <div class="friends-container">
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="load-data">Load User Data</button>
+            <button id="display-data">Display User</button>
+        </div>
     </div>
+
+    <script id="user-template"
+            type="text/x-handlebars-template">
+            <img id="profile-pic" class="user-info" src="{{img}}">
+            <div class="user-info"><p>{{name}}</p>
+            <p>{{city}}, {{state}}</p> </div>
+              
+    </script>
+    <script id="friends-template"
+            type="text/x-handlebars-template">
+            <ul>
+                {{#each friends}}
+                <li>{{name}}</li>
+                {{/each}}
+            </ul>
+    </script>
+    <script id="quote-template"
+            type="text/x-handlebars-template">
+            <p>Favorite quote</p>
+            <p>{{this}}</p>  
+    </script>
+    <script id="pokemon-template"
+            type="text/x-handlebars-template">
+            <img id="pokemon-image" src="{{img}}">
+            <p id="pokemon-text">{{name}}</p>  
+    </script>
+    <script id="meat-template"
+            type="text/x-handlebars-template">
+            <p>About me:</p>
+            <p class="meat-text">{{this}}</p>  
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.js"
+            integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="APIManager.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
