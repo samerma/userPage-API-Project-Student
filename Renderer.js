@@ -2,13 +2,14 @@
 class Renderer {
     constructor(apiManager) {
         this.apiManager = apiManager
+
+        this.idCount = 0
     }
     loadData() {
         this.apiManager.getRandomUsers()
         this.apiManager.getQuote()
         this.apiManager.getPokemon()
         this.apiManager.getMeat()
-        this.apiManager.logData()
     }
     renderUser() {
         const $user = $(".user-container")
@@ -24,7 +25,7 @@ class Renderer {
         $friends.empty()
         const friendsSource = $('#friends-template').html();
         const friendsTemplate = Handlebars.compile(friendsSource);
-        const friends = this.apiManager.getData().users
+        const friends = [...this.apiManager.getData().users]//clone array with new reference
         friends.shift()//remove first because it's the user
         const friendsHTML = friendsTemplate({ friends });
         $friends.append(friendsHTML)
@@ -55,5 +56,33 @@ class Renderer {
         const meat = this.apiManager.getData().meat
         const meatHTML = meatTemplate(meat);
         $meat.append(meatHTML)
+    }
+    renderSavedUsers() {
+        const $savedUsers = $("#saved-users-menu")
+        $savedUsers.empty()
+        $("#menu-container").empty()
+        const source = $('#saved-users-menu-template').html();
+        const template = Handlebars.compile(source);
+        const savedUsers = this.apiManager.getSavedUsers()
+        const HTML = template({ savedUsers });
+        $("#menu-container").append(HTML)
+    }
+    saveUserPage() {
+        const user = this.apiManager.getData()
+        user.id = this.apiManager.getNewId()
+        const savedUsers = this.apiManager.getSavedUsers()
+        savedUsers.push(user)
+        localStorage.setItem('savedUsers', JSON.stringify(savedUsers))
+        this.renderSavedUsers()
+    }
+    loadUserPage(id) {
+        const savedUsers = JSON.parse(localStorage.savedUsers)
+        const i = savedUsers.findIndex(u => u.id == id)
+        this.apiManager.data = savedUsers[i]
+        this.renderUser()
+        this.renderFriends()
+        this.renderQuote()
+        this.renderPokemon()
+        this.renderMeat()
     }
 }

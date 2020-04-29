@@ -36,6 +36,11 @@
             <button id="load-data">Load User Data</button>
             <button id="display-data">Display User</button>
         </div>
+        <div id="save-user">
+            <button id="save-user-btn">Save User Page</button>
+            <button id="load-user-btn">Load User Page</button>
+            <div id="menu-container"></div>
+        </div>
     </div>
 
     <script id="user-template"
@@ -67,6 +72,15 @@
             type="text/x-handlebars-template">
             <p>About me:</p>
             <p class="meat-text">{{this}}</p>  
+    </script>
+    <script id="saved-users-menu-template"
+            type="text/x-handlebars-template">
+            <select name="select user"
+                    id="select-user">
+                    {{#each savedUsers}}
+                    <option value="{{id}}">{{users.[0].name}}</option>
+                    {{/each}}
+            </select>  
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.0.js"

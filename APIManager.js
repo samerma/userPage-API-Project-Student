@@ -56,6 +56,22 @@ class APIManager {
 
         })
     }
+    getSavedUsers() {
+        if (localStorage.savedUsers)
+            return JSON.parse(localStorage.savedUsers)
+        return []
+    }
+    getNewId() {
+        if (localStorage.idCount) {
+            const id = localStorage.idCount
+            const newId = +id + 1
+            localStorage.setItem("idCount", newId)
+            return newId
+        }
+        localStorage.setItem("idCount", "0")
+        return "0"
+    }
+
     getData() {
         return this.data
     }

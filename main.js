@@ -12,5 +12,16 @@ $("#display-data").on("click", function () {
     renderer.renderQuote()
     renderer.renderPokemon()
     renderer.renderMeat()
+    renderer.renderSavedUsers()
 })
 
+$("#save-user-btn").on("click", function () {
+    renderer.saveUserPage()
+})
+
+$("#load-user-btn").on("click", function () {
+    const id = $("#select-user :selected").val();
+    console.log(id);
+
+    renderer.loadUserPage(id)
+})
