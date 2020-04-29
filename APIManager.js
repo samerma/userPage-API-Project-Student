@@ -1,4 +1,3 @@
-//This is the class that will manage all your APIs
 
 class APIManager {
     constructor() {
@@ -38,7 +37,7 @@ class APIManager {
                 this.data.pokemon = { name: data.species.name, img: data.sprites.back_default }
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                alert("aaa")
+                alert("error")
             }
 
         })
@@ -51,7 +50,7 @@ class APIManager {
                 this.data.meat = data
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                alert("aaa")
+                alert("error")
             }
 
         })
@@ -78,7 +77,6 @@ class APIManager {
     logData() {
         console.log(this.data);
     }
-
     getRandomInt = function (max) {
         return Math.floor(Math.random() * Math.floor(max));
     }

@@ -2,8 +2,6 @@
 class Renderer {
     constructor(apiManager) {
         this.apiManager = apiManager
-
-        this.idCount = 0
     }
     loadData() {
         this.apiManager.getRandomUsers()
@@ -76,7 +74,7 @@ class Renderer {
         this.renderSavedUsers()
     }
     loadUserPage(id) {
-        const savedUsers = JSON.parse(localStorage.savedUsers)
+        const savedUsers = this.apiManager.getSavedUsers()
         const i = savedUsers.findIndex(u => u.id == id)
         this.apiManager.data = savedUsers[i]
         this.renderUser()

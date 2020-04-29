@@ -21,7 +21,6 @@ $("#save-user-btn").on("click", function () {
 
 $("#load-user-btn").on("click", function () {
     const id = $("#select-user :selected").val();
-    console.log(id);
-
     renderer.loadUserPage(id)
 })
+renderer.renderSavedUsers()
